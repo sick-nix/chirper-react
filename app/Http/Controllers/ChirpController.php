@@ -55,9 +55,13 @@ class ChirpController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Chirp $chirp)
-    {
-        //
+    public function update(Request $request, Chirp $chirp) {
+        $this->authorize('update', $chirp);
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+        $chirp->update($validated);
+        return redirect(route('chirps.index'));
     }
 
     /**

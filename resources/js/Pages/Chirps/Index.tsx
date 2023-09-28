@@ -26,14 +26,14 @@ export default function Index({ auth, chirps }: PageProps<{ chirps: IChirps }>) 
                     <textarea
                         value={data.message}
                         placeholder="What's on your mind?"
-                        className="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                        className="block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
                         onChange={e => setData('message', e.target.value)}
                     ></textarea>
                     <InputError message={errors.message} className="mt-2" />
                     <PrimaryButton className="mt-4" disabled={processing}>Chirp</PrimaryButton>
                 </form>
 
-                <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                <div className="mt-6 bg-white shadow-sm rounded-lg divide-y dark:bg-gray-800">
                     {chirps.map(chirp =>
                         <Chirp key={chirp.id} chirp={chirp} />
                     )}
