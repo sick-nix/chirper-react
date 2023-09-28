@@ -4,8 +4,10 @@ import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useForm, Head } from '@inertiajs/react';
 import { PageProps } from "@/types";
+import Chirp from "@/Components/Chirp";
+import { IChirps } from "@/types/models";
 
-export default function Index({ auth }: PageProps) {
+export default function Index({ auth, chirps }: PageProps<{ chirps: IChirps }>) {
     const { data, setData, post, processing, reset, errors } = useForm({
         message: '',
     });
@@ -30,6 +32,12 @@ export default function Index({ auth }: PageProps) {
                     <InputError message={errors.message} className="mt-2" />
                     <PrimaryButton className="mt-4" disabled={processing}>Chirp</PrimaryButton>
                 </form>
+
+                <div className="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                    {chirps.map(chirp =>
+                        <Chirp key={chirp.id} chirp={chirp} />
+                    )}
+                </div>
             </div>
         </AuthenticatedLayout>
     );
